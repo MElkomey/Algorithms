@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+
+///Binary search algorithm  time complexity avg/worst O(log(n)), time complexity best O(1), space complexity O(1)
+//array must be sorted
+
+int binarySearch(int arr[],int size,int element){
+    int l=0;
+    int h=size-1;
+    int m=(l+h)/2;
+    while(l<=h ){ //(l<=h)
+        m=(l+h)/2;
+        if(arr[m]==element)
+        {
+            return m;
+            break;
+        }
+        else if(element < arr[m])
+        {
+            h=m-1;
+            
+        }else{
+            l=m+1;
+        }
+    }
+    
+    
+    return -1;
+}
+
+int main() {
+        int sortedArr[]={-3,10,15,90,101,200};
+        int result=binarySearch(sortedArr, 6, 90);
+        if(result==-1)
+            cout<<"Not Found"<<endl;
+        else
+            cout<<"Elment Found at index "<<result<<endl;
+    
+        
+    return 0;
+}

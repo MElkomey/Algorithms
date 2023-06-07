@@ -1,0 +1,61 @@
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+
+
+
+
+
+void print(int arr[], int size){
+    for(int i=0;i<size;i++)
+        cout<<arr[i]<<" ";
+    cout<<endl;
+}
+
+///Quick sort algorithm , time complexity best/avg O(nlogn)  , time complexity worst O(n^2) ,space complexity O(1)
+
+//partitioning process
+int partitioning(int arr[],int i,int j){
+    int pivotLoc=i;
+    
+    while(i != j){
+        if(arr[pivotLoc]>arr[j] && pivotLoc != j)
+        {
+            swap(arr[pivotLoc], arr[j]);
+            i++;
+            pivotLoc=j;
+        }
+        else if(arr[pivotLoc]<=arr[j] && pivotLoc != j){
+            j--;
+        }else if(arr[pivotLoc] < arr[i] && pivotLoc==j){
+            swap(arr[pivotLoc], arr[i]);
+            j--;
+            pivotLoc=i;
+        }else if(arr[pivotLoc] >=arr[i] && pivotLoc==j)
+        {
+            i++;
+        }
+    }
+    return pivotLoc;
+}
+
+void quickSort(int arr[],int i,int j){
+    if(i<j){
+   int pivot= partitioning(arr,i,j);
+    quickSort(arr, i, pivot-1);
+    quickSort(arr, pivot+1, j);
+    }
+}
+
+
+
+int main() {
+    int arr[]={10,1,11,9,12,-5};
+    int size=sizeof(arr)/sizeof(arr[0]);
+    quickSort(arr,0, size-1);
+        print(arr, size);
+        
+    return 0;
+}
